@@ -91,7 +91,7 @@ const deleteNote = (request, h) => {
 
   const index = _.findIndex(notes, (item) => item.id === id)
   if (index !== -1) {
-    notes.slice(index, 1)
+    notes.splice(index, 1)
     const response = h.response({
       status: 'success',
       message: 'Catatan berhasil dihapus'
