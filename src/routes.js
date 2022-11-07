@@ -1,4 +1,5 @@
-const { addNote, getAllNotes, getNoteById, updateNote, deleteNote } = require('./handler')
+const Joi = require('joi')
+const { addNote, getAllNotes, getNoteById, updateNote, deleteNote, addBook, getAllBook } = require('./handler')
 
 const routes = [
   {
@@ -25,7 +26,17 @@ const routes = [
     method: 'DELETE',
     path: '/notes/{id}',
     handler: deleteNote
-  }
+  },
+  {
+    method: 'POST',
+    path: '/books',
+    handler: addBook,
+  },
+  {
+    method: 'GET',
+    path: '/books',
+    handler: getAllBook
+  },
 ]
 
 module.exports = routes

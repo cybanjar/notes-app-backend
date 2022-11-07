@@ -1,0 +1,40 @@
+###
+GET http://localhost:5000/notes
+Content-Type: application/json
+
+###
+POST http://localhost:5000/notes 
+Content-Type: application/json
+
+{
+  "title": "Vue JS",
+  "tags": ["frontned", "css"],
+  "body": "Best frontend engineer"
+}
+
+###
+GET http://localhost:5000/books
+Content-Type: application/json
+
+###
+POST http://localhost:5000/books 
+Content-Type: application/json
+
+{
+  "name": "Buku update",
+  "year": 2010,
+  "author": "John Doe",
+  "summary": "Lorem ipsum dolor sit amet",
+  "publisher": "Dicoding Indonesia",
+  "pageCount": 100,
+  "readPage": 10,
+  "reading": false
+}
+
+###
+POST http://localhost:5000/posts?limit=15
+Content-Type: application/json
+
+{
+  "name": "syamsul amin"
+}
