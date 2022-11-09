@@ -1,5 +1,4 @@
-const Joi = require('joi')
-const { addNote, getAllNotes, getNoteById, updateNote, deleteNote, addBook, getAllBook } = require('./handler')
+const { addNote, getAllNotes, getNoteById, updateNote, deleteNote, addBook, getAllBook, getBookById, updateBook, deleteBook } = require('./handler')
 
 const routes = [
   {
@@ -36,6 +35,21 @@ const routes = [
     method: 'GET',
     path: '/books',
     handler: getAllBook
+  },
+  {
+    method: 'GET',
+    path: '/books/{id}',
+    handler: getBookById
+  },
+  {
+    method: 'PUT',
+    path: '/books/{id}',
+    handler: updateBook
+  },
+  {
+    method: 'DELETE',
+    path: '/books/{id}',
+    handler: deleteBook
   },
 ]
 
