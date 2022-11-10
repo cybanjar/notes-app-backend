@@ -1,4 +1,5 @@
-const { addNote, getAllNotes, getNoteById, updateNote, deleteNote, addBook, getAllBook, getBookById, updateBook, deleteBook } = require('./handler')
+const { addNote, getAllNotes, getNoteById, updateNote, deleteNote } = require('./controller/note')
+const { addBook, getAllBook, getBookById, updateBook, deleteBook } = require('./controller/book')
 
 const routes = [
   {
@@ -29,7 +30,7 @@ const routes = [
   {
     method: 'POST',
     path: '/books',
-    handler: addBook,
+    handler: addBook
   },
   {
     method: 'GET',
@@ -50,7 +51,7 @@ const routes = [
     method: 'DELETE',
     path: '/books/{id}',
     handler: deleteBook
-  },
+  }
 ]
 
 module.exports = routes

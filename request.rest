@@ -2,6 +2,11 @@
 GET http://localhost:5000/notes
 Content-Type: application/json
 
+@idNote=XsplWKhl
+###
+GET http://localhost:5000/notes/{{idNote}}
+Content-Type: application/json
+
 ###
 POST http://localhost:5000/notes 
 Content-Type: application/json
@@ -13,11 +18,28 @@ Content-Type: application/json
 }
 
 ###
+PUT http://localhost:5000/notes/{{idNote}} 
+Content-Type: application/json
+
+{
+  "title": "React JS Updated",
+  "tags": ["frontned", "css"],
+  "body": "Best frontend engineer"
+}
+
+###
+DELETE http://localhost:5000/notes/{{idNote}} 
+Content-Type: application/json
+
+# ==================================================
+# CRUD BOOK 
+# ==================================================
+###
 GET http://localhost:5000/books
 Content-Type: application/json
 
 
-@id=txgpDP1mpXLATVrI
+@id=80f9yxeM6AoZYDMZ
 ###
 GET http://localhost:5000/books/{{id}}
 Content-Type: application/json
@@ -37,7 +59,6 @@ Content-Type: application/json
   "readPage": 10,
   "reading": false
 }
-
 
 ###
 PUT http://localhost:5000/books/{{id}} 
