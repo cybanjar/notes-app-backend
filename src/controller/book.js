@@ -11,8 +11,8 @@ const addBook = (request, h) => {
 
   if (!name) {
     const response = h.response({
-      status: 'fail',
-      message: 'Gagal menambahkan buku. mohon isi nama buku'
+      status : 'fail',
+      message: 'Gagal menambahkan buku. mohon isi nama buku',
     })
     response.code(400)
     return response
@@ -20,24 +20,24 @@ const addBook = (request, h) => {
 
   if (readPage > pageCount) {
     const response = h.response({
-      status: 'fail',
-      message: 'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount'
+      status : 'fail',
+      message: 'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount',
     })
     response.code(400)
     return response
   }
 
-  const newBook = { id, name, year, author, summary, publisher, pageCount, readPage, reading, finished, insertedAt, updatedAt }
+  const newBook = {
+    id, name, year, author, summary, publisher, pageCount, readPage, reading, finished, insertedAt, updatedAt,
+  }
   books.push(newBook)
 
   const isSuccess = _.filter(books, (item) => item.id === id).length > 0
   if (isSuccess) {
     const response = h.response({
-      status: 'success',
+      status : 'success',
       message: 'Buku berhasil ditambahkan',
-      data: {
-        bookId: id
-      }
+      data   : { bookId: id },
     })
     response.code(201)
     return response
@@ -47,9 +47,7 @@ const addBook = (request, h) => {
 const getAllBook = (request, h) => {
   const response = h.response({
     status: 'success',
-    data: {
-      books
-    }
+    data  : { books },
   })
   response.code(200)
 
@@ -62,17 +60,15 @@ const getBookById = (request, h) => {
   const book = _.filter(books, (item) => item.id === id)[0]
   if (book !== undefined) {
     return {
-      code: 200,
+      code  : 200,
       status: 'success',
-      data: {
-        book
-      }
+      data  : { book },
     }
   }
 
   const response = h.response({
-    status: 'fail',
-    message: 'Buku tidak ditemukan'
+    status : 'fail',
+    message: 'Buku tidak ditemukan',
   })
   response.code(404)
   return response
@@ -84,11 +80,10 @@ const updateBook = (request, h) => {
   const updateAt = new Date().toISOString()
 
   const index = books.findIndex((item) => item.id === id)
-
   if (!name) {
     const response = h.response({
-      status: 'fail',
-      message: 'Gagal memperbaharui buku. mohon isi nama buku'
+      status : 'fail',
+      message: 'Gagal memperbaharui buku. mohon isi nama buku',
     })
     response.code(400)
     return response
@@ -96,8 +91,8 @@ const updateBook = (request, h) => {
 
   if (index === -1) {
     const response = h.response({
-      status: 'fail',
-      message: 'Gagal memperbarui buku. Id tidak ditemukan'
+      status : 'fail',
+      message: 'Gagal memperbarui buku. Id tidak ditemukan',
     })
     response.code(404)
     return response
@@ -114,20 +109,20 @@ const updateBook = (request, h) => {
       pageCount,
       readPage,
       reading,
-      updateAt
+      updateAt,
     }
 
     const response = h.response({
-      status: 'success',
-      message: 'Buku berhasil diperbarui'
+      status : 'success',
+      message: 'Buku berhasil diperbarui',
     })
     response.code(200)
     return response
   }
 
   const response = h.response({
-    status: 'fail',
-    message: 'gagal update'
+    status : 'fail',
+    message: 'gagal update',
   })
   response.code(404)
   return response
@@ -140,19 +135,21 @@ const deleteBook = (request, h) => {
   if (index !== -1) {
     books.splice(index, 1)
     const response = h.response({
-      status: 'success',
-      message: 'Buku berhasil dihapus'
+      status : 'success',
+      message: 'Buku berhasil dihapus',
     })
     response.code(200)
     return response
   }
 
   const response = h.response({
-    status: 'fail',
-    message: 'gagal delete'
+    status : 'fail',
+    message: 'gagal delete',
   })
   response.code(422)
   return response
 }
 
-module.exports = { addBook, getAllBook, getBookById, updateBook, deleteBook }
+module.exports = {
+  addBook, getAllBook, getBookById, updateBook, deleteBook,
+}

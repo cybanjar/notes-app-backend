@@ -3,55 +3,55 @@ const { addBook, getAllBook, getBookById, updateBook, deleteBook } = require('./
 
 const routes = [
   {
-    method: 'POST',
-    path: '/notes',
-    handler: addNote
+    method : 'POST',
+    path   : '/notes',
+    handler: addNote,
   },
   {
-    method: 'GET',
-    path: '/notes',
-    handler: getAllNotes
+    method : 'GET',
+    path   : '/notes',
+    handler: getAllNotes,
   },
   {
-    method: 'GET',
-    path: '/notes/{id}',
-    handler: getNoteById
+    method : 'GET',
+    path   : '/notes/{id}',
+    handler: getNoteById,
   },
   {
-    method: 'PUT',
-    path: '/notes/{id}',
-    handler: updateNote
+    method : 'PUT',
+    path   : '/notes/{id}',
+    handler: updateNote,
   },
   {
-    method: 'DELETE',
-    path: '/notes/{id}',
-    handler: deleteNote
+    method : 'DELETE',
+    path   : '/notes/{id}',
+    handler: deleteNote,
   },
   {
-    method: 'POST',
-    path: '/books',
-    handler: addBook
+    method : 'POST',
+    path   : '/books',
+    handler: addBook,
   },
   {
-    method: 'GET',
-    path: '/books',
-    handler: getAllBook
+    method : 'GET',
+    path   : '/books',
+    handler: getAllBook,
   },
   {
-    method: 'GET',
-    path: '/books/{id}',
-    handler: getBookById
+    method : 'GET',
+    path   : '/books/{id}',
+    handler: getBookById,
   },
   {
-    method: 'PUT',
-    path: '/books/{id}',
-    handler: updateBook
+    method : 'PUT',
+    path   : '/books/{id}',
+    handler: updateBook,
   },
   {
-    method: 'DELETE',
-    path: '/books/{id}',
-    handler: deleteBook
-  }
+    method : 'DELETE',
+    path   : '/books/{id}',
+    handler: deleteBook,
+  },
 ]
 
 module.exports = routes

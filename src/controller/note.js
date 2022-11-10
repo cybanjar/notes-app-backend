@@ -8,17 +8,17 @@ const addNote = (request, h) => {
   const createdAt = new Date().toISOString()
   const updateAt = createdAt
 
-  const newNote = { title, tags, body, id, createdAt, updateAt }
+  const newNote = {
+    title, tags, body, id, createdAt, updateAt,
+  }
   notes.push(newNote)
 
   const isSuccess = _.filter(notes, (item) => item.id === id).length > 0
   if (isSuccess) {
     const response = h.response({
-      status: 'success',
+      status : 'success',
       message: 'catatan berhasil ditambahkan',
-      data: {
-        noteId: id
-      }
+      data   : { noteId: id },
     })
     response.code(201)
     return response
@@ -27,10 +27,8 @@ const addNote = (request, h) => {
 
 const getAllNotes = () => ({
   statusCode: 200,
-  status: 'success',
-  data: {
-    notes
-  }
+  status    : 'success',
+  data      : { notes },
 })
 
 const getNoteById = (request, h) => {
@@ -39,17 +37,15 @@ const getNoteById = (request, h) => {
   const note = _.filter(notes, (item) => item.id === id)[0]
   if (note !== undefined) {
     return {
-      code: 200,
+      code  : 200,
       status: 'success',
-      data: {
-        note
-      }
+      data  : { note },
     }
   }
 
   const response = h.response({
-    status: 'fail',
-    message: 'Catatan tidak ditemukan'
+    status : 'fail',
+    message: 'Catatan tidak ditemukan',
   })
   response.code(404)
   return response
@@ -67,20 +63,20 @@ const updateNote = (request, h) => {
       title,
       tags,
       body,
-      updateAt
+      updateAt,
     }
 
     const response = h.response({
-      status: 'success',
-      message: 'Catatan berhasil di update'
+      status : 'success',
+      message: 'Catatan berhasil di update',
     })
     response.code(200)
     return response
   }
 
   const response = h.response({
-    status: 'fail',
-    message: 'gagal update'
+    status : 'fail',
+    message: 'gagal update',
   })
   response.code(404)
   return response
@@ -93,19 +89,21 @@ const deleteNote = (request, h) => {
   if (index !== -1) {
     notes.splice(index, 1)
     const response = h.response({
-      status: 'success',
-      message: 'Catatan berhasil dihapus'
+      status : 'success',
+      message: 'Catatan berhasil dihapus',
     })
     response.code(200)
     return response
   }
 
   const response = h.response({
-    status: 'fail',
-    message: 'gagal update'
+    status : 'fail',
+    message: 'gagal update',
   })
   response.code(422)
   return response
 }
 
-module.exports = { addNote, getAllNotes, getNoteById, updateNote, deleteNote }
+module.exports = {
+  addNote, getAllNotes, getNoteById, updateNote, deleteNote,
+}
