@@ -45,12 +45,77 @@ const addBook = (request, h) => {
 }
 
 const getAllBook = (request, h) => {
+  const { name, reading, finished } = request.query
+
+  if (name) {
+    const book = _.filter(books, (item) => item.name === name)
+
+    const response = h.response({
+      status: 'success',
+      data  : { book },
+    }).code(200)
+    return response
+  }
+
+  if (reading) {
+    if (Number(reading) === 0) {
+      const book = _.filter(books, { reading: false })
+      const response = h.response({
+        status: 'success',
+        data  : { book },
+      }).code(200)
+
+      return response
+    } else if (Number(reading) === 1) {
+      const book = _.filter(books, { reading: true })
+      const response = h.response({
+        status: 'success',
+        data  : { book },
+      }).code(200)
+
+      return response
+    } else {
+      const response = h.response({
+        status: 'Not found!',
+        data  : [],
+      }).code(404)
+
+      return response
+    }
+  }
+
+  if (finished) {
+    if (Number(finished) === 0) {
+      const book = _.filter(books, { finished: false })
+      const response = h.response({
+        status: 'success',
+        data  : { book },
+      }).code(200)
+
+      return response
+    } else if (Number(finished) === 1) {
+      const book = _.filter(books, { finished: true })
+      const response = h.response({
+        status: 'success',
+        data  : { book },
+      }).code(200)
+
+      return response
+    } else {
+      const response = h.response({
+        status: 'Not found!',
+        data  : [],
+      }).code(404)
+
+      return response
+    }
+  }
+
   const response = h.response({
     status: 'success',
     data  : { books },
   })
   response.code(200)
-
   return response
 }
 

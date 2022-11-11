@@ -1,3 +1,9 @@
+# ==================================================
+# README 
+# Install extention REST Client 
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+# ==================================================
+
 ###
 GET http://localhost:5000/notes
 Content-Type: application/json
@@ -35,11 +41,11 @@ Content-Type: application/json
 # CRUD BOOK 
 # ==================================================
 ###
-GET http://localhost:5000/books
+GET http://localhost:5000/books?reading=1
 Content-Type: application/json
 
 
-@id=5XSmGu7HRbgkzqVh
+@id=hGltp1BBmJgaZZcQ
 ###
 GET http://localhost:5000/books/{{id}}
 Content-Type: application/json
@@ -50,14 +56,14 @@ POST http://localhost:5000/books
 Content-Type: application/json
 
 {
-  "name": "Buku update",
+  "name": "vue",
   "year": 2010,
   "author": "John Doe",
   "summary": "Lorem ipsum dolor sit amet",
   "publisher": "Dicoding Indonesia",
   "pageCount": 100,
-  "readPage": 10,
-  "reading": false
+  "readPage": 100,
+  "reading": true
 }
 
 ###
