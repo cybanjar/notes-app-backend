@@ -38,14 +38,14 @@ DELETE http://localhost:5000/notes/{{idNote}}
 Content-Type: application/json
 
 # ==================================================
-# CRUD BOOK 
+# LOCAL 
 # ==================================================
 ###
-GET http://localhost:5000/books?reading=1
+GET http://localhost:5000/books
 Content-Type: application/json
 
 
-@id=hGltp1BBmJgaZZcQ
+@id=dyBAtAUvI7FOPhzB
 ###
 GET http://localhost:5000/books/{{id}}
 Content-Type: application/json
@@ -56,7 +56,7 @@ POST http://localhost:5000/books
 Content-Type: application/json
 
 {
-  "name": "vue",
+  "name": "react Js",
   "year": 2010,
   "author": "John Doe",
   "summary": "Lorem ipsum dolor sit amet",
@@ -87,7 +87,7 @@ Content-Type: application/json
 
 
 # ==================================================
-# Testing prod 
+# PROD
 # ==================================================
 
 @url_server=http://52.77.218.216:5000
@@ -110,7 +110,7 @@ Content-Type: application/json
 
 
 ###
-GET {{url_server}}/books?finished=0
+GET {{url_server}}/books
 Content-Type: application/json
 
 ###

@@ -48,13 +48,14 @@ const getAllBook = (request, h) => {
   const { name, reading, finished } = request.query
 
   if (name) {
-    const book = _.filter(books, (item) => item.name === name)
+    const book = _.filter(books, (item) => {
+      return item.name.toUpperCase().includes(name.toUpperCase())
+    })
 
-    const response = h.response({
+    return h.response({
       status: 'success',
       data  : { book },
     }).code(200)
-    return response
   }
 
   if (reading) {
@@ -142,7 +143,7 @@ const getBookById = (request, h) => {
 const updateBook = (request, h) => {
   const { id } = request.params
   const { name, year, author, summary, publisher, pageCount, readPage, reading } = request.payload
-  const updateAt = new Date().toISOString()
+  const updatedAt = new Date().toISOString()
 
   const index = books.findIndex((item) => item.id === id)
   if (!name) {
@@ -174,7 +175,7 @@ const updateBook = (request, h) => {
       pageCount,
       readPage,
       reading,
-      updateAt,
+      updatedAt,
     }
 
     const response = h.response({
