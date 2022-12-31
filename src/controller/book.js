@@ -12,7 +12,7 @@ const addBook = (request, h) => {
   if (!name) {
     const response = h.response({
       status : 'fail',
-      message: 'Gagal menambahkan buku. mohon isi nama buku',
+      message: 'Gagal menambahkan buku. Mohon isi nama buku',
     })
     response.code(400)
     return response
@@ -60,28 +60,24 @@ const getAllBook = (request, h) => {
 
   if (reading) {
     if (Number(reading) === 0) {
-      const book = _.filter(books, { reading: false })
-      const response = h.response({
+      return h.response({
         status: 'success',
-        data  : { book },
+        data  : { 
+          books: _.filter(books, { reading: false })
+        },
       }).code(200)
-
-      return response
     } else if (Number(reading) === 1) {
-      const book = _.filter(books, { reading: true })
-      const response = h.response({
+      return h.response({
         status: 'success',
-        data  : { book },
+        data  : { 
+          books:  _.filter(books, { reading: true })
+        },
       }).code(200)
-
-      return response
     } else {
-      const response = h.response({
+      return h.response({
         status: 'Not found!',
         data  : [],
       }).code(404)
-
-      return response
     }
   }
 
@@ -114,7 +110,15 @@ const getAllBook = (request, h) => {
 
   const response = h.response({
     status: 'success',
-    data  : { books },
+    data  : { 
+      books: _.map(books, (item) => {
+        return {
+          id: item.id,
+          name: item.name,
+          publisher: item.publisher
+        }
+      })
+    },
   })
   response.code(200)
   return response
@@ -149,10 +153,17 @@ const updateBook = (request, h) => {
   if (!name) {
     const response = h.response({
       status : 'fail',
-      message: 'Gagal memperbaharui buku. mohon isi nama buku',
+      message: 'Gagal memperbarui buku. Mohon isi nama buku',
     })
     response.code(400)
     return response
+  }
+
+  if (readPage > pageCount) {
+    return h.response({
+      status : 'fail',
+      message: 'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount',
+    }).code(400)
   }
 
   if (index === -1) {
@@ -210,9 +221,9 @@ const deleteBook = (request, h) => {
 
   const response = h.response({
     status : 'fail',
-    message: 'gagal delete',
+    message: 'Buku gagal dihapus. Id tidak ditemukan',
   })
-  response.code(422)
+  response.code(404)
   return response
 }
 
